@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use std::fs;
-
-fn main() {
+pub fn solve_day_1(){
     let mut list1: Vec<u32> = Vec::new();
     let mut list2: Vec<u32> = Vec::new();
 
@@ -32,5 +31,5 @@ fn main() {
     for num in repetitions.values() {
         similarity_score += num;
     }
-    println!("{}", similarity_score);
+    println!("Similarity Score: {}", similarity_score);
 }
