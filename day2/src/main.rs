@@ -1,6 +1,6 @@
 use std::fs;
 
-mod solver;
+mod solver_1;
 
 fn main() {
     let mut input = fs::read_to_string("input.txt").unwrap();
@@ -14,6 +14,6 @@ fn main() {
         list_of_reports.push(report);
     }
 
-    println!("{}", solver::solve_1(list_of_reports));
+    println!("{}", solver_1::solve_1(list_of_reports));
 
 }
