@@ -1,6 +1,6 @@
 use std::fs;
 
-mod solver_1;
+mod solver;
 
 fn main() {
     let mut input = fs::read_to_string("input.txt").unwrap();
@@ -14,6 +14,12 @@ fn main() {
         list_of_reports.push(report);
     }
 
-    println!("{}", solver_1::solve_1(list_of_reports));
-
+    println!(
+        "Without problem dampener: {}",
+        solver::solve(&list_of_reports, false)
+    );
+    println!(
+        "Wit problem dampener: {}",
+        solver::solve(&list_of_reports, true)
+    );
 }
