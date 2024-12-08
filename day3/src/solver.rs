@@ -19,7 +19,6 @@ pub fn solve(input: &String) -> i32 {
             }
         }
     }
-    println!("{}", num);
     total
 }
 
@@ -62,7 +61,6 @@ fn check_fmt(input: &String, start: usize) -> Option<i32> {
             Ok(num) => result.1 = num,
             Err(_) => return None,
         }
-        println!("{:?}", result);
         return Some(result.1 * result.0);
     }
     None
