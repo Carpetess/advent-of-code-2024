@@ -1,11 +1,17 @@
 pub fn solve(input: &String) -> i32 {
-    let mut num = 0;
     let mut total = 0;
+    let mut switch = true;
     for i in 0..input.len() {
-        if input[i..].starts_with("mul(") {
+        if input[i..].starts_with("do()"){
+            switch = true;
+        }
+        if input[i..].starts_with("don't()"){
+            switch = false;
+        }
+        if input[i..].starts_with("mul(") && switch{
             match check_fmt(input, i + 4) {
                 Some(x) => { total += x;
-                    num += 1;
+
                 } ,
                 None => {
                     continue;
