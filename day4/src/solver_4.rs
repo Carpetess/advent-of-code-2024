@@ -1,4 +1,4 @@
-pub fn solve(matrix: Vec<Vec<char>>) -> u32 {
+pub fn solve(matrix: &Vec<Vec<char>>) -> u32 {
     let mut total = 0;
     for (y, line) in matrix.iter().enumerate() {
         for (x, c) in line.iter().enumerate() {
@@ -42,7 +42,6 @@ fn follow_direction(
     return valid;
 }
 fn check_angle(matrix: &Vec<Vec<char>>, (y_og, x_og): (i32, i32)) -> Option<Vec<(i32, i32)>> {
-    println!("NEW: {:?}", (y_og, x_og));
     let mut directions: Vec<(i32, i32)> = Vec::new();
     for i in -1..2 {
         for j in -1..2 {
