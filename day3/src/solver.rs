@@ -2,20 +2,20 @@ pub fn solve(input: &String) -> i32 {
     let mut total = 0;
     let mut switch = true;
     for i in 0..input.len() {
-        if input[i..].starts_with("do()"){
+        if input[i..].starts_with("do()") {
             switch = true;
         }
-        if input[i..].starts_with("don't()"){
+        if input[i..].starts_with("don't()") {
             switch = false;
         }
-        if input[i..].starts_with("mul(") && switch{
+        if input[i..].starts_with("mul(") && switch {
             match check_fmt(input, i + 4) {
-                Some(x) => { total += x;
-
-                } ,
+                Some(x) => {
+                    total += x;
+                }
                 None => {
                     continue;
-                },
+                }
             }
         }
     }
@@ -45,7 +45,6 @@ fn check_fmt(input: &String, start: usize) -> Option<i32> {
                 } else {
                     return None;
                 }
-
             }
         }
         current_char_pos += 1;
