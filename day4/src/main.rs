@@ -1,4 +1,4 @@
-mod solver;
+mod solver_4;
 use std::fs;
 fn main() {
     let input = fs::read_to_string("input.txt").unwrap();
@@ -12,7 +12,8 @@ fn main() {
             temp.push(char);
         }
     }
-    matrix.remove(matrix.len()-1);
-    println!("{:?}", matrix);
-    println!("{:?}", solver::solve(matrix));
+    if temp != Vec::new() {
+        matrix.push(temp);
+    }
+    println!("{:?}", solver_4::solve(matrix));
 }
