@@ -17,6 +17,6 @@ fn main() {
     if temp != Vec::new() {
         matrix.push(temp);
     }
-    println!("{:?}", solver_4::solve(&matrix));
-    println!("{:?}", solver_4_pt2::solve(&matrix));
+    println!("XMAS: {:?}", solver_4::solve(&matrix));
+    println!("X-MAS: {:?}", solver_4_pt2::solve(&matrix));
 }
