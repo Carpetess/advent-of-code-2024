@@ -30,3 +30,7 @@ This one was a headache, I've already tried to make a project like this exercise
 gave up halfway because of how hard it was, even though it was a few months ago, after solving this,
 I think I'll get back to that project.
 
+### Day 5:
+
+Not harder than day 4 in my opinion, both solutions were straightforward, just a little tiresome to
+implement and debug sometimes, but still easy nonetheless.
