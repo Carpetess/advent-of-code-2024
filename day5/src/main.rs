@@ -3,6 +3,8 @@ use std::collections::HashMap;
 use std::fs;
 
 mod solver;
+mod sorter;
+
 
 fn main() {
     let rule_regex = Regex::new(r"^\d+\|\d+$").unwrap();
@@ -34,7 +36,8 @@ fn main() {
         }
     }
 
-    println!("Total right order: {}", solver::solve(rules, prints))
+    println!("Total already in right order: {}", solver::solve(&rules, &mut prints));
+    println!("Total in new order: {}", sorter::sort_result(&rules, &prints));
 }
 
 fn parse_print(line: &str) -> Option<Vec<i32>> {
