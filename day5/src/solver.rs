@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 pub fn solve(rule_set :&HashMap<i32, Vec<i32>>, prints: &mut Vec<Vec<i32>>) -> i32 {
     let mut total = 0;
-    for (n_print, print) in prints.clone().iter().enumerate() {
+    for print in prints.clone().iter() {
         let mut valid = true;
         for num in print {
             if valid {
