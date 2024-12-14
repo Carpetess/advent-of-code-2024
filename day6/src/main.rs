@@ -12,28 +12,27 @@ fn main() {
         }
         maze.push(temp);
     }
-    let mut pos = (0,0);
+    let mut pos = (0, 0);
 
     for (y, line) in maze.iter().enumerate() {
-        for (x, char) in line.iter().enumerate(){
-            if *char == '^'{
-                pos = (y,x);
+        for (x, char) in line.iter().enumerate() {
+            if *char == '^' {
+                pos = (y, x);
             }
         }
     }
 
-    let mut guard: Guard = Guard::new((-1,0), pos, maze, '^');
+    let mut guard: Guard = Guard::new((-1, 0), pos, maze, '^');
 
-    while guard.walk_forward(){
-        for  line in &guard.maze{
-            for char in line{
+    while guard.walk_forward() {
+        for line in &guard.maze {
+            for char in line {
                 print!("{}", char);
             }
             println!()
         }
         println!("POS: {:?}", &guard.get_pos());
         println!("LOOKING AT: {:?}", &guard.get_going());
-
     }
-    println!("{}", &guard.get_been_at()+1)
+    println!("{}", &guard.get_been_at())
 }

@@ -1,6 +1,5 @@
 pub mod maze_solver {
 
-
     const BEEN_AT_CHAR: char = ',';
 
     pub struct Guard {
@@ -12,8 +11,13 @@ pub mod maze_solver {
     }
 
     impl Guard {
-        pub fn new(going: (i32, i32), pos: (usize, usize), maze: Vec<Vec<char>>, avatar: char) -> Self {
-            Self{
+        pub fn new(
+            going: (i32, i32),
+            pos: (usize, usize),
+            maze: Vec<Vec<char>>,
+            avatar: char,
+        ) -> Self {
+            Self {
                 going,
                 pos,
                 been_at: 0,
@@ -21,10 +25,10 @@ pub mod maze_solver {
                 avatar,
             }
         }
-        pub fn get_pos(&self) -> (usize, usize){
+        pub fn get_pos(&self) -> (usize, usize) {
             self.pos
         }
-        pub fn get_going(&self) -> (i32, i32){
+        pub fn get_going(&self) -> (i32, i32) {
             self.going
         }
 
@@ -34,14 +38,16 @@ pub mod maze_solver {
         pub fn walk_forward(&mut self) -> bool {
             let mut new_pos = match calculate_new_pos(self.pos, self.going) {
                 Some(pos) => pos,
-                None => return false,
+                None => {
+                    self.end_maze();
+                    return false;
+                }
             };
-            if self.is_end_maze(new_pos){
-                self.been_at += 1;
-                self.maze[self.pos.0][self.pos.1] = BEEN_AT_CHAR;
-                return false
+            if self.is_end_maze(new_pos) {
+                self.end_maze();
+                return false;
             }
-            while self.is_obstacle(new_pos){
+            while self.is_obstacle(new_pos) {
                 self.turn_right();
                 new_pos = match calculate_new_pos(self.pos, self.going) {
                     Some(pos) => pos,
@@ -83,17 +89,21 @@ pub mod maze_solver {
         fn is_obstacle(&self, new_pos: (usize, usize)) -> bool {
             self.maze[new_pos.0][new_pos.1] == '#'
         }
+        fn end_maze(&mut self) {
+            self.been_at += 1;
+            self.maze[self.pos.0][self.pos.1] = BEEN_AT_CHAR;
+        }
     }
     fn calculate_new_pos(pos: (usize, usize), going: (i32, i32)) -> Option<(usize, usize)> {
         let new_col = match add_i32_usize(pos.0, going.0) {
             Some(col) => col,
-            None => return None
+            None => return None,
         };
-        let new_row = match add_i32_usize(pos.1, going.1){
+        let new_row = match add_i32_usize(pos.1, going.1) {
             Some(row) => row,
-            None => return None
+            None => return None,
         };
-            return Some((new_col, new_row))
+        return Some((new_col, new_row));
     }
     fn add_i32_usize(x: usize, y: i32) -> Option<usize> {
         if y.is_negative() {
@@ -107,5 +117,4 @@ pub mod maze_solver {
             x.checked_add(y as usize)
         }
     }
-
 }
